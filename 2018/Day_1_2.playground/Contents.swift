@@ -83,30 +83,30 @@ func firstRepeatedResultFrequencyFor_Array(_ frequencies: [String]) -> Int {
 }
 
 class CodeTests: XCTestCase {
-//    func testExample1() {
-//        let frequencies = ["+1", "-2", "+3", "+1"]
-//        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 2)
-//    }
-//
-//    func testExample2() {
-//        let frequencies = ["+1", "-1"]
-//        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 0)
-//    }
-//
-//    func testExample3() {
-//        let frequencies = ["+3", "+3", "+4", "-2", "-4"]
-//        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 10)
-//    }
-//
-//    func testExample4() {
-//        let frequencies = ["-6", "+3", "+8", "+5", "-6"]
-//        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 5)
-//    }
-//
-//    func testExample5() {
-//        let frequencies = ["+7", "+7", "-2", "-7", "-4"]
-//        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 14)
-//    }
+    func testExample1() {
+        let frequencies = ["+1", "-2", "+3", "+1"]
+        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 2)
+    }
+
+    func testExample2() {
+        let frequencies = ["+1", "-1"]
+        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 0)
+    }
+
+    func testExample3() {
+        let frequencies = ["+3", "+3", "+4", "-2", "-4"]
+        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 10)
+    }
+
+    func testExample4() {
+        let frequencies = ["-6", "+3", "+8", "+5", "-6"]
+        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 5)
+    }
+
+    func testExample5() {
+        let frequencies = ["+7", "+7", "-2", "-7", "-4"]
+        XCTAssertEqual(firstRepeatedResultFrequencyFor_Set(frequencies), 14)
+    }
 
     //  average: 8.112
     //  relative standard deviation: 5.256%
