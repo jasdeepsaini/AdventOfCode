@@ -1,5 +1,12 @@
+//
+//  main.swift
+//  Day_5
+//
+//  Created by Jasdeep Saini on 12/9/18.
+//  Copyright © 2018 Outsite Networks. All rights reserved.
+//
+
 import Foundation
-import XCTest
 
 typealias Polymer = String
 
@@ -38,7 +45,7 @@ func resultingPolymerFrom(_ initialPolymer: Polymer) -> String {
         let currentCharacter = String(character)
 
         if previousCharacter != currentCharacter && previousCharacter.lowercased() == currentCharacter.lowercased() {
-            newPolymer.popLast()
+            _ = newPolymer.popLast()
         } else {
             newPolymer.append(currentCharacter)
         }
@@ -54,56 +61,5 @@ func unitsInResultingPolymerFrom(_ initialPolymer: Polymer) -> Int {
     return resultingPolymer.count
 }
 
-class CodeTest: XCTestCase {
-    func testEmptyPolymer() {
-        let polymer = ""
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 0)
-    }
-
-    func testSingleUnitPolymer() {
-        let polymer = "A"
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 1)
-    }
-
-    func testUnreactivePolymer() {
-        let polymer = "AA"
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 2)
-    }
-
-    func testReactivePolymer() {
-        let polymer = "Aa"
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 0)
-    }
-
-    func testReactivePolymer2() {
-        let polymer = "AABB"
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 4)
-    }
-
-    func testReactivePolymer3() {
-        let polymer = "aAbB"
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 0)
-    }
-
-    func testExample1_part1() {
-        let polymer = "dabAcCaCBAcCcaDA"
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 10)
-    }
-
-    func testInput_part1() {
-        let polymer = readInputFile()
-        XCTAssertEqual(unitsInResultingPolymerFrom(polymer), 9704)
-    }
-
-    func testExample1_part2() {
-        let polymer = "dabAcCaCBAcCcaDA"
-        XCTAssertEqual(shortestPolymerByRemovingOneUnitFrom(polymer), 4)
-    }
-
-    func testInput_part2() {
-        let polymer = readInputFile()
-        XCTAssertEqual(shortestPolymerByRemovingOneUnitFrom(polymer), 6942)
-    }
-}
-
-CodeTest.defaultTestSuite.run()
+let polymer = "abc"
+print(shortestPolymerByRemovingOneUnitFrom(polymer))
