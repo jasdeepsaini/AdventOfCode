@@ -11,7 +11,7 @@ struct Coordinate: Hashable {
     let y: Int
 
     var hashValue: Int {
-        return x.hashValue & y.hashValue
+        return x.hashValue ^ y.hashValue
     }
 
     static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
