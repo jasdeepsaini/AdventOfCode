@@ -65,43 +65,29 @@ func boundingAreaAtSecond(_ second: Int, for lights: [Light]) -> (result: [Strin
     var maxX = 0
     var minY = Int.max
     var maxY = 0
+    var translatedLghts = [String: Light]()
 
-    let translatedLights = lights.reduce([String: Light]()) { (dictionary, light) -> [String: Light] in
-        var newDictionary = dictionary
-
+    for light in lights {
         let newX = light.initialX + (light.velocityX * second)
         let newY = light.initialY + (light.velocityY * second)
 
-        if newX < minX {
-            minX = newX
-        }
-
-        if newX > maxX {
-            maxX = newX
-        }
-
-        if newY < minY {
-            minY = newY
-        }
-
-        if newY > maxY {
-            maxY = newY
-        }
+        minX = min(minX, newX)
+        maxX = max(maxX, newX)
+        minY = min(minY, newY)
+        maxY = max(maxY, newY)
 
         let light = Light(initialX: newX,
                           initialY: newY,
                           velocityX: light.velocityX,
                           velocityY: light.velocityY)
 
-        newDictionary["\(newX) \(newY)"] = light
-
-        return newDictionary
+        translatedLghts["\(newX) \(newY)"] = light
     }
 
     let area = (maxX - minX) * (maxY - minY)
 //    print("Area: \(area) minX: \(minX), maxX: \(maxX), minY: \(minY), maxY: \(maxY)")
 
-    return (result: translatedLights, area: area, minX: minX, maxX: maxX, minY: minY, maxY: maxY)
+    return (result: translatedLghts, area: area, minX: minX, maxX: maxX, minY: minY, maxY: maxY)
 //    print(translatedLights)
 }
 

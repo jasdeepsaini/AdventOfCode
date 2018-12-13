@@ -15,37 +15,37 @@ class AdventOfCodeTests: XCTestCase {
         setUpRegex()
     }
 
-//    func testParseStringsForExample() {
-//        let strings = exampleStrings()
-//        let lights = parseStrings(strings)
-//
-//        XCTAssertEqual(lights[0], Light(initialX: 9, initialY: 1, velocityX: 0, velocityY: 2))
-//        XCTAssertEqual(lights[1], Light(initialX: 7, initialY: 0, velocityX: -1, velocityY: 0))
-//        XCTAssertEqual(lights[2], Light(initialX: 3, initialY: -2, velocityX: -1, velocityY: 1))
-//        XCTAssertEqual(lights.last, Light(initialX: -3, initialY: 6, velocityX: 2, velocityY: -1))
-//
-//        XCTAssertEqual(lights.count, 31)
-//    }
-//
-//    func testBoundingAreaAtSecondForExample() {
-//        let strings = exampleStrings()
-//        let lights = parseStrings(strings)
-//
-//        print(boundingAreaAtSecond(0, for: lights).area)
-//        print(boundingAreaAtSecond(1, for: lights).area)
-//        print(boundingAreaAtSecond(2, for: lights).area)
-//        print(boundingAreaAtSecond(3, for: lights).area)
-//        print(boundingAreaAtSecond(4, for: lights).area)
-//        print(boundingAreaAtSecond(5, for: lights).area)
-//        print(boundingAreaAtSecond(6, for: lights).area)
-//    }
-//
-//    func testParseStringsForInput() {
-//        let strings = readInputFileAsArrayOfStrings()
-//        let lights = parseStrings(strings)
-//
-//        XCTAssertEqual(lights.count, 365)
-//    }
+    func testParseStringsForExample() {
+        let strings = exampleStrings()
+        let lights = parseStrings(strings)
+
+        XCTAssertEqual(lights[0], Light(initialX: 9, initialY: 1, velocityX: 0, velocityY: 2))
+        XCTAssertEqual(lights[1], Light(initialX: 7, initialY: 0, velocityX: -1, velocityY: 0))
+        XCTAssertEqual(lights[2], Light(initialX: 3, initialY: -2, velocityX: -1, velocityY: 1))
+        XCTAssertEqual(lights.last, Light(initialX: -3, initialY: 6, velocityX: 2, velocityY: -1))
+
+        XCTAssertEqual(lights.count, 31)
+    }
+
+    func testBoundingAreaAtSecondForExample() {
+        let strings = exampleStrings()
+        let lights = parseStrings(strings)
+
+        print(boundingAreaAtSecond(0, for: lights).area)
+        print(boundingAreaAtSecond(1, for: lights).area)
+        print(boundingAreaAtSecond(2, for: lights).area)
+        print(boundingAreaAtSecond(3, for: lights).area)
+        print(boundingAreaAtSecond(4, for: lights).area)
+        print(boundingAreaAtSecond(5, for: lights).area)
+        print(boundingAreaAtSecond(6, for: lights).area)
+    }
+
+    func testParseStringsForInput() {
+        let strings = readInputFileAsArrayOfStrings()
+        let lights = parseStrings(strings)
+
+        XCTAssertEqual(lights.count, 365)
+    }
 
     func testBoundingAreaAtSecondForInput() {
         let strings = readInputFileAsArrayOfStrings()
@@ -73,7 +73,8 @@ class AdventOfCodeTests: XCTestCase {
 
         displayLights(previousResult.result, minX: previousResult.minX, maxX: previousResult.maxX, minY: previousResult.minY, maxY: previousResult.maxY)
 
-        // Result: A B G X J B X F
+        // Part 1 Result: A B G X J B X F
+        // Part 2 Result: 10619
     }
 
     func exampleStrings() -> [String] {
