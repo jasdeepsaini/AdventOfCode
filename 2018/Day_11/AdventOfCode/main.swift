@@ -48,41 +48,29 @@ func calculatePowerLevel(for coordinate: Coordinate, serialNumber: Int) -> Int {
 }
 
 func findSquareWithLargestTotalPower(with serialNumber: Int, gridSizeRange: ClosedRange<Int>) -> (coordinate: Coordinate, gridSize: Int) {
-    var cells: [[Int]] = Array(repeating: Array(repeating: 0, count: 301), count: 301)
+    var partialSums: [[Int]] = Array(repeating: Array(repeating: 0, count: 301), count: 301)
 
     for y in 1...300 {
         for x in 1...300 {
             let coordinate = Coordinate(x: x, y: y)
-            cells[x][y] = calculatePowerLevel(for: coordinate, serialNumber: serialNumber)
+            let power = calculatePowerLevel(for: coordinate, serialNumber: serialNumber)
+
+            let leftValue = partialSums[x - 1][y]
+            let upValue = partialSums[x][y - 1]
+            let diagonalValue = partialSums[x - 1][y - 1]
+
+            partialSums[x][y] = power + leftValue + upValue - diagonalValue
         }
     }
-
 
     var maxPower = Int.min
     var maxCoordinate = Coordinate(x: 0, y: 0)
     var gridSizeForMax = 0
 
-    for y in 1...300 {
-        for x in 1...300 {
-            print("\(x) \(y)")
-
-            // Guessing that a value less than 1 will not have the highest power
-            if cells[x][y] <= 1 {
-                continue
-            }
-
-            for gridSize in gridSizeRange {
-                if x + (gridSize - 1) > 300 || y + (gridSize - 1) > 300 {
-                    continue
-                }
-
-                var total = 0
-
-                for offsetX in 0..<gridSize {
-                    for offsetY in 0..<gridSize {
-                        total += cells[x+offsetX][y+offsetY]
-                    }
-                }
+    for gridSize in gridSizeRange {
+        for y in gridSize...300 {
+            for x in gridSize...300 {
+                let total = partialSums[x][y] - partialSums[x][y - gridSize] - partialSums[x - gridSize][y] + partialSums[x - gridSize][y - gridSize]
 
                 if total > maxPower {
                     maxPower = total
@@ -93,19 +81,6 @@ func findSquareWithLargestTotalPower(with serialNumber: Int, gridSizeRange: Clos
         }
     }
 
-    print(maxPower)
-    return (coordinate: maxCoordinate, gridSize: gridSizeForMax)
-}
-
-func printGrid(_ grid: [String: Int]) {
-    var string = ""
-    for y in 1...300 {
-        string = string + "\n"
-        for x in 1...300 {
-            let key = "\(x) \(y)"
-            string = string + "\(grid[key] ?? 0) "
-        }
-    }
-
-    print(string)
+    let convertedCoordinate = Coordinate(x: maxCoordinate.x - gridSizeForMax + 1, y: maxCoordinate.y - gridSizeForMax + 1)
+    return (coordinate: convertedCoordinate, gridSize: gridSizeForMax)
 }
