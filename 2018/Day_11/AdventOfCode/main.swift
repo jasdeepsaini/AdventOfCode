@@ -48,43 +48,49 @@ func calculatePowerLevel(for coordinate: Coordinate, serialNumber: Int) -> Int {
 }
 
 func findSquareWithLargestTotalPower(with serialNumber: Int, gridSizeRange: ClosedRange<Int>) -> (coordinate: Coordinate, gridSize: Int) {
-    var cells = [Coordinate: Int]()
+    var cells: [[Int]] = Array(repeating: Array(repeating: 0, count: 301), count: 301)
 
     for y in 1...300 {
         for x in 1...300 {
             let coordinate = Coordinate(x: x, y: y)
-            cells[coordinate] = calculatePowerLevel(for: coordinate, serialNumber: serialNumber)
+            cells[x][y] = calculatePowerLevel(for: coordinate, serialNumber: serialNumber)
         }
     }
 
-//    printGrid(cells)
 
     var maxPower = Int.min
     var maxCoordinate = Coordinate(x: 0, y: 0)
     var gridSizeForMax = 0
 
-    for (coordinate, _) in cells {
-        for gridSize in gridSizeRange {
-            if coordinate.x + (gridSize - 1) > 300 || coordinate.y + (gridSize - 1) > 300 {
+    for y in 1...300 {
+        for x in 1...300 {
+            print("\(x) \(y)")
+
+            // Guessing that a value less than 1 will not have the highest power
+            if cells[x][y] <= 1 {
                 continue
             }
 
-            var total = 0
+            for gridSize in gridSizeRange {
+                if x + (gridSize - 1) > 300 || y + (gridSize - 1) > 300 {
+                    continue
+                }
 
-            for offsetX in 0..<gridSize {
-                for offsetY in 0..<gridSize {
-                    let coordinate = Coordinate(x: coordinate.x + offsetX, y: coordinate.y + offsetY)
-                    total += cells[coordinate] ?? 0
+                var total = 0
+
+                for offsetX in 0..<gridSize {
+                    for offsetY in 0..<gridSize {
+                        total += cells[x+offsetX][y+offsetY]
+                    }
+                }
+
+                if total > maxPower {
+                    maxPower = total
+                    maxCoordinate = Coordinate(x: x, y: y)
+                    gridSizeForMax = gridSize
                 }
             }
-
-            if total > maxPower {
-                maxPower = total
-                maxCoordinate = coordinate
-                gridSizeForMax = gridSize
-            }
         }
-//        print("\(coordinate.x), \(coordinate.y): \(value)")
     }
 
     print(maxPower)
